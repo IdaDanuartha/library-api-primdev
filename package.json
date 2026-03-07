@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "library-api-primdev-new",
+  "version": "1.0.0",
+  "description": "primdev intermediate class back-end 2026 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "IdaDanuartha",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
