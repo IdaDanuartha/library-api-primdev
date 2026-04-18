@@ -148,3 +148,14 @@ export const deleteUser = async (req, res) => {
     message: 'user deleted successfully',
   })
 }
+
+export const isUserExist = async (id) => {
+  // Mencari pengguna dengan ID yang sesuai di database menggunakan Prisma Client
+  const user = await prisma.users.findUnique({
+    where: {
+      id: id,
+    },
+  })
+
+  return !!user
+}
