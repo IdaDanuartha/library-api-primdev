@@ -5,7 +5,7 @@ export const getUsers = async (req, res) => {
   // Mengambil semua user dari database menggunakan Prisma Client
   const users = await prisma.users.findMany()
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'users retrieved successfully',
     data: users,
@@ -34,13 +34,13 @@ export const getUserById = async (req, res) => {
 
   // Jika user tidak ditemukan, kirimkan pesan error
   if (!user) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `user with ID: ${id} not found`,
     })
   }
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'user retrieved successfully',
     data: user,
@@ -63,7 +63,7 @@ export const createUser = async (req, res) => {
     },
   })
 
-  res.json({
+  res.status(201).json({
     success: true,
     message: 'user created successfully',
     data: user,
@@ -87,7 +87,7 @@ export const updateUser = async (req, res) => {
 
   // Jika user tidak ditemukan, kirimkan pesan error
   if (!user) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `user with ID: ${id} not found`,
     })
@@ -109,7 +109,7 @@ export const updateUser = async (req, res) => {
     data: dataToUpdate,
   })
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'user updated successfully',
     data: updatedUser,
@@ -130,7 +130,7 @@ export const deleteUser = async (req, res) => {
 
   // Jika user tidak ditemukan, kirimkan pesan error
   if (!user) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `user with ID: ${id} not found`,
     })
@@ -143,7 +143,7 @@ export const deleteUser = async (req, res) => {
     },
   })
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'user deleted successfully',
   })

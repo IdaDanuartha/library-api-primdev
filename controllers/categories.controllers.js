@@ -4,7 +4,7 @@ export const getCategories = async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client
   const categories = await prisma.categories.findMany()
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'Categories retrieved successfully',
     data: categories,
@@ -25,13 +25,13 @@ export const getCategoryById = async (req, res) => {
 
   // Jika buku tidak ditemukan, kirimkan pesan error
   if (!category) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `Category with ID: ${id} not found`,
     })
   }
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'Category retrieved successfully',
     data: category,
@@ -49,7 +49,7 @@ export const createCategory = async (req, res) => {
     },
   })
 
-  res.json({
+  res.status(201).json({
     success: true,
     message: 'Category created successfully',
     data: category,
@@ -73,7 +73,7 @@ export const updateCategory = async (req, res) => {
 
   // Jika buku tidak ditemukan, kirimkan pesan error
   if (!category) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `Category with ID: ${id} not found`,
     })
@@ -89,7 +89,7 @@ export const updateCategory = async (req, res) => {
     },
   })
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'Category updated successfully',
     data: updatedCategory,
@@ -110,7 +110,7 @@ export const deleteCategory = async (req, res) => {
 
   // Jika buku tidak ditemukan, kirimkan pesan error
   if (!category) {
-    return res.json({
+    return res.status(404).json({
       success: false,
       message: `Category with ID: ${id} not found`,
     })
@@ -123,7 +123,7 @@ export const deleteCategory = async (req, res) => {
     },
   })
 
-  res.json({
+  res.status(200).json({
     success: true,
     message: 'Category deleted successfully',
   })
