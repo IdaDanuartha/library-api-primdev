@@ -4,7 +4,7 @@ export const getProfiles = async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client
   const profiles = await prisma.profiles.findMany()
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Profiles retrieved successfully',
     data: profiles,
@@ -31,7 +31,7 @@ export const getProfileById = async (req, res) => {
     })
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Profile retrieved successfully',
     data: profile,
@@ -51,7 +51,7 @@ export const createProfile = async (req, res) => {
     },
   })
 
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     message: 'Profile created successfully',
     data: profile,
@@ -93,7 +93,7 @@ export const updateProfile = async (req, res) => {
     },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Profile updated successfully',
     data: updatedProfile,
@@ -127,7 +127,7 @@ export const deleteProfile = async (req, res) => {
     },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Profile deleted successfully',
   })

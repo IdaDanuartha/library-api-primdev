@@ -1,10 +1,13 @@
 import prisma from '../config/database.config.js'
+import {
+  checkValidationResult
+} from '../helpers/check-validations.js'
 
 export const getBooks = async (req, res) => {
   // Mengambil semua buku dari database menggunakan Prisma Client
   const books = await prisma.books.findMany()
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Books retrieved successfully',
     data: books,
@@ -31,14 +34,16 @@ export const getBookById = async (req, res) => {
     })
   }
 
-  res.json({
+  return res.json({
     success: true,
     message: 'Book retrieved successfully',
     data: book,
   })
 }
 
-export const createBook = async (req, res) => {
+export const createBook = async (req, res, next) => {
+  checkValidationResult(req, res, next)
+
   // Mendapatkan data buku baru dari request body
   const { categoryId, title, author, year } = req.body
 
@@ -65,14 +70,16 @@ export const createBook = async (req, res) => {
     },
   })
 
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     message: 'Book created successfully',
     data: book,
   })
 }
 
-export const updateBook = async (req, res) => {
+export const updateBook = async (req, res, next) => {
+  checkValidationResult(req, res, next)
+
   // Mendapatkan ID buku yang akan diupdate dari parameter URL
   // Lalu mengubahnya menjadi tipe data integer menggunakan parseInt
   const id = parseInt(req.params.id)
@@ -108,7 +115,7 @@ export const updateBook = async (req, res) => {
     },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Book updated successfully',
     data: updatedBook,
@@ -142,7 +149,7 @@ export const deleteBook = async (req, res) => {
     },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Book deleted successfully',
   })

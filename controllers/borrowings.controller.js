@@ -11,7 +11,7 @@ export const getAllBorrowings = async (req, res) => {
     },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Borrowings retrieved successfully',
     data: borrowings,
@@ -39,7 +39,7 @@ export const getBorrowingById = async (req, res) => {
     })
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Borrowing retrieved successfully',
     data: borrowing,
@@ -87,7 +87,7 @@ export const createBorrowing = async (req, res) => {
     data: { available: false },
   })
 
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     message: 'Borrowing created successfully',
     data: borrowing,
@@ -135,7 +135,7 @@ export const returnBook = async (req, res) => {
     data: { available: true },
   })
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Book returned successfully',
     data: returnedBorrowing,
@@ -174,7 +174,7 @@ export const deleteBorrowing = async (req, res) => {
     })
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: 'Borrowing deleted successfully',
     data: borrowing,
