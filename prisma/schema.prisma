@@ -31,6 +31,7 @@ model Books {
   author        String
   year          Int
   available     Boolean  @default(true)
+  cloudinaryId  String? // Untuk menyimpan public_id dari Cloudinary
   createdAt     DateTime @default(now())
 
   categories   Categories? @relation(fields: [categoryId], references: [id])
